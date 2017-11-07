@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.dao.CourseMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.Course" >
+    <id column="Course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="NS_id" property="nsId" jdbcType="INTEGER" />
+    <result column="Course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="Course_code" property="courseCode" jdbcType="VARCHAR" />
+    <result column="Course_time" property="courseTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Course_id, NS_id, Course_name, Course_code, Course_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where Course_id = #{courseId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course
+    where Course_id = #{courseId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stu.entity.Course" >
+    insert into course (Course_id, NS_id, Course_name, 
+      Course_code, Course_time)
+    values (#{courseId,jdbcType=INTEGER}, #{nsId,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, 
+      #{courseCode,jdbcType=VARCHAR}, #{courseTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stu.entity.Course" >
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        Course_id,
+      </if>
+      <if test="nsId != null" >
+        NS_id,
+      </if>
+      <if test="courseName != null" >
+        Course_name,
+      </if>
+      <if test="courseCode != null" >
+        Course_code,
+      </if>
+      <if test="courseTime != null" >
+        Course_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="nsId != null" >
+        #{nsId,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCode != null" >
+        #{courseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="courseTime != null" >
+        #{courseTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.Course" >
+    update course
+    <set >
+      <if test="nsId != null" >
+        NS_id = #{nsId,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null" >
+        Course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCode != null" >
+        Course_code = #{courseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="courseTime != null" >
+        Course_time = #{courseTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Course_id = #{courseId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.Course" >
+    update course
+    set NS_id = #{nsId,jdbcType=INTEGER},
+      Course_name = #{courseName,jdbcType=VARCHAR},
+      Course_code = #{courseCode,jdbcType=VARCHAR},
+      Course_time = #{courseTime,jdbcType=VARCHAR}
+    where Course_id = #{courseId,jdbcType=INTEGER}
+  </update>
+</mapper>

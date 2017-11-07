@@ -1,0 +1,14 @@
+
+r create a new repository on the command line
+1.
+echo "# StuManage" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:HuangGuoYu/StuManage.git
+git push -u origin master
+…or push an existing repository from the command line
+
+2.
+git remote add origin git@github.com:HuangGuoYu/StuManage.git
+git push -u origin master

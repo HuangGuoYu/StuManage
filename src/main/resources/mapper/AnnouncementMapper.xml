@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.dao.AnnouncementMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.Announcement" >
+    <id column="AC_id" property="acId" jdbcType="INTEGER" />
+    <result column="NS_id" property="nsId" jdbcType="INTEGER" />
+    <result column="AC_moment" property="acMoment" jdbcType="VARCHAR" />
+    <result column="AC_time" property="acTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    AC_id, NS_id, AC_moment, AC_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from announcement
+    where AC_id = #{acId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from announcement
+    where AC_id = #{acId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stu.entity.Announcement" >
+    insert into announcement (AC_id, NS_id, AC_moment, 
+      AC_time)
+    values (#{acId,jdbcType=INTEGER}, #{nsId,jdbcType=INTEGER}, #{acMoment,jdbcType=VARCHAR}, 
+      #{acTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stu.entity.Announcement" >
+    insert into announcement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="acId != null" >
+        AC_id,
+      </if>
+      <if test="nsId != null" >
+        NS_id,
+      </if>
+      <if test="acMoment != null" >
+        AC_moment,
+      </if>
+      <if test="acTime != null" >
+        AC_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="acId != null" >
+        #{acId,jdbcType=INTEGER},
+      </if>
+      <if test="nsId != null" >
+        #{nsId,jdbcType=INTEGER},
+      </if>
+      <if test="acMoment != null" >
+        #{acMoment,jdbcType=VARCHAR},
+      </if>
+      <if test="acTime != null" >
+        #{acTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.Announcement" >
+    update announcement
+    <set >
+      <if test="nsId != null" >
+        NS_id = #{nsId,jdbcType=INTEGER},
+      </if>
+      <if test="acMoment != null" >
+        AC_moment = #{acMoment,jdbcType=VARCHAR},
+      </if>
+      <if test="acTime != null" >
+        AC_time = #{acTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where AC_id = #{acId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.Announcement" >
+    update announcement
+    set NS_id = #{nsId,jdbcType=INTEGER},
+      AC_moment = #{acMoment,jdbcType=VARCHAR},
+      AC_time = #{acTime,jdbcType=TIMESTAMP}
+    where AC_id = #{acId,jdbcType=INTEGER}
+  </update>
+</mapper>

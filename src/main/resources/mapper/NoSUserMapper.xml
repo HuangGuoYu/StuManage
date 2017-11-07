@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.dao.NoSUserMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.NoSUser" >
+    <id column="NS_id" property="nsId" jdbcType="INTEGER" />
+    <result column="NS_userName" property="nsUsername" jdbcType="VARCHAR" />
+    <result column="NS_password" property="nsPassword" jdbcType="VARCHAR" />
+    <result column="NS_name" property="nsName" jdbcType="VARCHAR" />
+    <result column="NS_identity" property="nsIdentity" jdbcType="VARCHAR" />
+    <result column="NS_sex" property="nsSex" jdbcType="VARCHAR" />
+    <result column="NS_phone" property="nsPhone" jdbcType="VARCHAR" />
+    <result column="NS_email" property="nsEmail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    NS_id, NS_userName, NS_password, NS_name, NS_identity, NS_sex, NS_phone, NS_email
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from no_s_user
+    where NS_id = #{nsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from no_s_user
+    where NS_id = #{nsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stu.entity.NoSUser" >
+    insert into no_s_user (NS_id, NS_userName, NS_password, 
+      NS_name, NS_identity, NS_sex, 
+      NS_phone, NS_email)
+    values (#{nsId,jdbcType=INTEGER}, #{nsUsername,jdbcType=VARCHAR}, #{nsPassword,jdbcType=VARCHAR}, 
+      #{nsName,jdbcType=VARCHAR}, #{nsIdentity,jdbcType=VARCHAR}, #{nsSex,jdbcType=VARCHAR}, 
+      #{nsPhone,jdbcType=VARCHAR}, #{nsEmail,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stu.entity.NoSUser" >
+    insert into no_s_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nsId != null" >
+        NS_id,
+      </if>
+      <if test="nsUsername != null" >
+        NS_userName,
+      </if>
+      <if test="nsPassword != null" >
+        NS_password,
+      </if>
+      <if test="nsName != null" >
+        NS_name,
+      </if>
+      <if test="nsIdentity != null" >
+        NS_identity,
+      </if>
+      <if test="nsSex != null" >
+        NS_sex,
+      </if>
+      <if test="nsPhone != null" >
+        NS_phone,
+      </if>
+      <if test="nsEmail != null" >
+        NS_email,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nsId != null" >
+        #{nsId,jdbcType=INTEGER},
+      </if>
+      <if test="nsUsername != null" >
+        #{nsUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="nsPassword != null" >
+        #{nsPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="nsName != null" >
+        #{nsName,jdbcType=VARCHAR},
+      </if>
+      <if test="nsIdentity != null" >
+        #{nsIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="nsSex != null" >
+        #{nsSex,jdbcType=VARCHAR},
+      </if>
+      <if test="nsPhone != null" >
+        #{nsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="nsEmail != null" >
+        #{nsEmail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.NoSUser" >
+    update no_s_user
+    <set >
+      <if test="nsUsername != null" >
+        NS_userName = #{nsUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="nsPassword != null" >
+        NS_password = #{nsPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="nsName != null" >
+        NS_name = #{nsName,jdbcType=VARCHAR},
+      </if>
+      <if test="nsIdentity != null" >
+        NS_identity = #{nsIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="nsSex != null" >
+        NS_sex = #{nsSex,jdbcType=VARCHAR},
+      </if>
+      <if test="nsPhone != null" >
+        NS_phone = #{nsPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="nsEmail != null" >
+        NS_email = #{nsEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where NS_id = #{nsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.NoSUser" >
+    update no_s_user
+    set NS_userName = #{nsUsername,jdbcType=VARCHAR},
+      NS_password = #{nsPassword,jdbcType=VARCHAR},
+      NS_name = #{nsName,jdbcType=VARCHAR},
+      NS_identity = #{nsIdentity,jdbcType=VARCHAR},
+      NS_sex = #{nsSex,jdbcType=VARCHAR},
+      NS_phone = #{nsPhone,jdbcType=VARCHAR},
+      NS_email = #{nsEmail,jdbcType=VARCHAR}
+    where NS_id = #{nsId,jdbcType=INTEGER}
+  </update>
+</mapper>

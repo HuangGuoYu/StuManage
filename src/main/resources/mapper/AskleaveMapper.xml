@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.dao.AskleaveMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.Askleave" >
+    <id column="Leave_id" property="leaveId" jdbcType="INTEGER" />
+    <result column="S_id" property="sId" jdbcType="INTEGER" />
+    <result column="Course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="SG_id" property="sgId" jdbcType="CHAR" />
+    <result column="Leave_reason" property="leaveReason" jdbcType="VARCHAR" />
+    <result column="Leave_course_time" property="leaveCourseTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Leave_id, S_id, Course_id, SG_id, Leave_reason, Leave_course_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from askleave
+    where Leave_id = #{leaveId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from askleave
+    where Leave_id = #{leaveId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stu.entity.Askleave" >
+    insert into askleave (Leave_id, S_id, Course_id, 
+      SG_id, Leave_reason, Leave_course_time
+      )
+    values (#{leaveId,jdbcType=INTEGER}, #{sId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, 
+      #{sgId,jdbcType=CHAR}, #{leaveReason,jdbcType=VARCHAR}, #{leaveCourseTime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.stu.entity.Askleave" >
+    insert into askleave
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="leaveId != null" >
+        Leave_id,
+      </if>
+      <if test="sId != null" >
+        S_id,
+      </if>
+      <if test="courseId != null" >
+        Course_id,
+      </if>
+      <if test="sgId != null" >
+        SG_id,
+      </if>
+      <if test="leaveReason != null" >
+        Leave_reason,
+      </if>
+      <if test="leaveCourseTime != null" >
+        Leave_course_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="leaveId != null" >
+        #{leaveId,jdbcType=INTEGER},
+      </if>
+      <if test="sId != null" >
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="sgId != null" >
+        #{sgId,jdbcType=CHAR},
+      </if>
+      <if test="leaveReason != null" >
+        #{leaveReason,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveCourseTime != null" >
+        #{leaveCourseTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.Askleave" >
+    update askleave
+    <set >
+      <if test="sId != null" >
+        S_id = #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null" >
+        Course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="sgId != null" >
+        SG_id = #{sgId,jdbcType=CHAR},
+      </if>
+      <if test="leaveReason != null" >
+        Leave_reason = #{leaveReason,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveCourseTime != null" >
+        Leave_course_time = #{leaveCourseTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Leave_id = #{leaveId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.Askleave" >
+    update askleave
+    set S_id = #{sId,jdbcType=INTEGER},
+      Course_id = #{courseId,jdbcType=INTEGER},
+      SG_id = #{sgId,jdbcType=CHAR},
+      Leave_reason = #{leaveReason,jdbcType=VARCHAR},
+      Leave_course_time = #{leaveCourseTime,jdbcType=VARCHAR}
+    where Leave_id = #{leaveId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.dao.PositioningMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.Positioning" >
+    <id column="Posit_id" property="positId" jdbcType="CHAR" />
+    <result column="S_id" property="sId" jdbcType="INTEGER" />
+    <result column="Posit_latitude" property="positLatitude" jdbcType="VARCHAR" />
+    <result column="Posit_longitude" property="positLongitude" jdbcType="VARCHAR" />
+    <result column="Posit_time" property="positTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Posit_id, S_id, Posit_latitude, Posit_longitude, Posit_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from positioning
+    where Posit_id = #{positId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from positioning
+    where Posit_id = #{positId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.stu.entity.Positioning" >
+    insert into positioning (Posit_id, S_id, Posit_latitude, 
+      Posit_longitude, Posit_time)
+    values (#{positId,jdbcType=CHAR}, #{sId,jdbcType=INTEGER}, #{positLatitude,jdbcType=VARCHAR}, 
+      #{positLongitude,jdbcType=VARCHAR}, #{positTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.stu.entity.Positioning" >
+    insert into positioning
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="positId != null" >
+        Posit_id,
+      </if>
+      <if test="sId != null" >
+        S_id,
+      </if>
+      <if test="positLatitude != null" >
+        Posit_latitude,
+      </if>
+      <if test="positLongitude != null" >
+        Posit_longitude,
+      </if>
+      <if test="positTime != null" >
+        Posit_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="positId != null" >
+        #{positId,jdbcType=CHAR},
+      </if>
+      <if test="sId != null" >
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="positLatitude != null" >
+        #{positLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="positLongitude != null" >
+        #{positLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="positTime != null" >
+        #{positTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.Positioning" >
+    update positioning
+    <set >
+      <if test="sId != null" >
+        S_id = #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="positLatitude != null" >
+        Posit_latitude = #{positLatitude,jdbcType=VARCHAR},
+      </if>
+      <if test="positLongitude != null" >
+        Posit_longitude = #{positLongitude,jdbcType=VARCHAR},
+      </if>
+      <if test="positTime != null" >
+        Posit_time = #{positTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where Posit_id = #{positId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.Positioning" >
+    update positioning
+    set S_id = #{sId,jdbcType=INTEGER},
+      Posit_latitude = #{positLatitude,jdbcType=VARCHAR},
+      Posit_longitude = #{positLongitude,jdbcType=VARCHAR},
+      Posit_time = #{positTime,jdbcType=TIMESTAMP}
+    where Posit_id = #{positId,jdbcType=CHAR}
+  </update>
+</mapper>

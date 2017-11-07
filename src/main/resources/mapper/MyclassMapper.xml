@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.dao.MyclassMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.Myclass" >
+    <id column="Class_id" property="classId" jdbcType="INTEGER" />
+    <result column="NS_id" property="nsId" jdbcType="INTEGER" />
+    <result column="Class_name" property="className" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Class_id, NS_id, Class_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from myclass
+    where Class_id = #{classId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from myclass
+    where Class_id = #{classId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.stu.entity.Myclass" >
+    insert into myclass (Class_id, NS_id, Class_name
+      )
+    values (#{classId,jdbcType=INTEGER}, #{nsId,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.stu.entity.Myclass" >
+    insert into myclass
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="classId != null" >
+        Class_id,
+      </if>
+      <if test="nsId != null" >
+        NS_id,
+      </if>
+      <if test="className != null" >
+        Class_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="classId != null" >
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="nsId != null" >
+        #{nsId,jdbcType=INTEGER},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.Myclass" >
+    update myclass
+    <set >
+      <if test="nsId != null" >
+        NS_id = #{nsId,jdbcType=INTEGER},
+      </if>
+      <if test="className != null" >
+        Class_name = #{className,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Class_id = #{classId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.Myclass" >
+    update myclass
+    set NS_id = #{nsId,jdbcType=INTEGER},
+      Class_name = #{className,jdbcType=VARCHAR}
+    where Class_id = #{classId,jdbcType=INTEGER}
+  </update>
+</mapper>

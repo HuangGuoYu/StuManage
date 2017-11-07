@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.stu.dao.signInMapper" >
+  <resultMap id="BaseResultMap" type="com.stu.entity.signIn" >
+    <id column="SG_id" property="sgId" jdbcType="CHAR" />
+    <result column="S_id" property="sId" jdbcType="INTEGER" />
+    <result column="Course_id" property="courseId" jdbcType="INTEGER" />
+    <result column="SG_course_time" property="sgCourseTime" jdbcType="VARCHAR" />
+    <result column="SG_state" property="sgState" jdbcType="VARCHAR" />
+    <result column="SG_time" property="sgTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SG_id, S_id, Course_id, SG_course_time, SG_state, SG_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sign_in
+    where SG_id = #{sgId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sign_in
+    where SG_id = #{sgId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.stu.entity.signIn" >
+    insert into sign_in (SG_id, S_id, Course_id, 
+      SG_course_time, SG_state, SG_time
+      )
+    values (#{sgId,jdbcType=CHAR}, #{sId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, 
+      #{sgCourseTime,jdbcType=VARCHAR}, #{sgState,jdbcType=VARCHAR}, #{sgTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.stu.entity.signIn" >
+    insert into sign_in
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sgId != null" >
+        SG_id,
+      </if>
+      <if test="sId != null" >
+        S_id,
+      </if>
+      <if test="courseId != null" >
+        Course_id,
+      </if>
+      <if test="sgCourseTime != null" >
+        SG_course_time,
+      </if>
+      <if test="sgState != null" >
+        SG_state,
+      </if>
+      <if test="sgTime != null" >
+        SG_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sgId != null" >
+        #{sgId,jdbcType=CHAR},
+      </if>
+      <if test="sId != null" >
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="sgCourseTime != null" >
+        #{sgCourseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sgState != null" >
+        #{sgState,jdbcType=VARCHAR},
+      </if>
+      <if test="sgTime != null" >
+        #{sgTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stu.entity.signIn" >
+    update sign_in
+    <set >
+      <if test="sId != null" >
+        S_id = #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="courseId != null" >
+        Course_id = #{courseId,jdbcType=INTEGER},
+      </if>
+      <if test="sgCourseTime != null" >
+        SG_course_time = #{sgCourseTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sgState != null" >
+        SG_state = #{sgState,jdbcType=VARCHAR},
+      </if>
+      <if test="sgTime != null" >
+        SG_time = #{sgTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where SG_id = #{sgId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stu.entity.signIn" >
+    update sign_in
+    set S_id = #{sId,jdbcType=INTEGER},
+      Course_id = #{courseId,jdbcType=INTEGER},
+      SG_course_time = #{sgCourseTime,jdbcType=VARCHAR},
+      SG_state = #{sgState,jdbcType=VARCHAR},
+      SG_time = #{sgTime,jdbcType=TIMESTAMP}
+    where SG_id = #{sgId,jdbcType=CHAR}
+  </update>
+</mapper>
