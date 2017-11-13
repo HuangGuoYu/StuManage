@@ -32,4 +32,6 @@
 
     <!-- 4.扫描web相关的bean -->
     <context:component-scan base-package="com.stu.controller" />
+    <import resource="spring-interceptors.xml"/>
+    <import resource="spring-redis.xml"/>
 </beans>
