@@ -7,6 +7,11 @@
   <version>1.0-SNAPSHOT</version>
   <name>StuManage Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
+  <properties>
+    <freemark-version>2.3.20</freemark-version>
+  </properties>
+
   <dependencies>
     <!-- 单元测试 -->
     <dependency>
@@ -139,6 +144,22 @@
       <artifactId>commons-collections</artifactId>
       <version>3.2</version>
     </dependency>
+
+    <!-- redis cache related.....start -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-redis</artifactId>
+      <version>1.6.0.RELEASE</version>
+    </dependency>
+    <!-- redis cache related.....end -->
+
+
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>${freemark-version}</version>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>StuManage</finalName>
