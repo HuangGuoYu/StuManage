@@ -4,8 +4,17 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <mvc:exclude-mapping path="/mobile/login**"/>
+            <mvc:mapping path="/**/*"/>
+            <mvc:exclude-mapping path="/**/mobile/loginPage"/>
+            <mvc:exclude-mapping path="/**/resource/**"/>
+            <mvc:exclude-mapping path="/**/mui/**"/>
+            <mvc:exclude-mapping path="/**/fonts/*"/>
+            <mvc:exclude-mapping path="/**/*.css"/>
+            <mvc:exclude-mapping path="/**/*.js"/>
+            <mvc:exclude-mapping path="/**/*.png"/>
+            <mvc:exclude-mapping path="/**/*.gif"/>
+            <mvc:exclude-mapping path="/**/*.jpg"/>
+            <mvc:exclude-mapping path="/**/*.jpeg"/>
             <bean class="com.stu.interceptors.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
