@@ -12,3 +12,11 @@ git push -u origin master
 2.
 git remote add origin git@github.com:HuangGuoYu/StuManage.git
 git push -u origin master
+
+
+工程使用：
+  项目中存在ftl模板文件，和jsp文件
+  返回视图名称时的步骤：
+                    1.在ftl文件夹下面找
+                    2.找不到时，到jsp中寻找
+                    3.jsp中找不到直接报错404
